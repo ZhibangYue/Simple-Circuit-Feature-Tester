@@ -50,3 +50,16 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Keil
+DebugConfig/
+Listings/
+Objects/
+EventRecorderStub.scvd
+keilkill.bat
+project.uvguix.yzb
+project.uvoptx
+project.uvprojx
+
+# VS Code
+.vscode/
