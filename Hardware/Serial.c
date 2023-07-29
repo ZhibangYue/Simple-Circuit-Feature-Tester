@@ -24,7 +24,7 @@ void Serial_Init(void)
 	//USART1_RX	  PA.10
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF; //输入模式
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP; //浮空输入
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP; //上拉输入
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 	
@@ -35,7 +35,7 @@ void Serial_Init(void)
 //    GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;         //上拉
 //    GPIO_Init(GPIOA,&GPIO_InitStructure);
 	
-	GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_USART1); //
+	GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_USART1); 
     GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_USART1);
 	USART_InitTypeDef USART_InitStructure;
 	USART_InitStructure.USART_BaudRate = 9600;
