@@ -9,11 +9,15 @@
 uint8_t Serial_RxData;
 uint8_t Serial_RxFlag;
 
+/**
+  * @brief  Usartåˆå§‹åŒ–
+  * @attention  PA9ä¸ºå‘é€å¼•è„šï¼ŒPA10ä¸ºæ¥æ”¶å¼•è„šï¼Œè¿™æ˜¯æ•°æ®æ‰‹å†Œè¦æ±‚çš„
+  */
 void Serial_Init(void)
 {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	
+	// USART1_TX	  PA.9
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
@@ -21,22 +25,17 @@ void Serial_Init(void)
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	//USART1_RX	  PA.10
+	// USART1_RX	  PA.10
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF; //ÊäÈëÄ£Ê½
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP; //ÉÏÀ­ÊäÈë
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF; //è¾“å…¥æ¨¡å¼
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP; //ä¸Šæ‹‰è¾“å…¥
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	
-//	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_9 |GPIO_Pin_10;//Á½¸öIO¿Ú
-//    GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;         //¸´ÓÃÄ£Ê½
-//    GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;    //50MHz
-//    GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;       //ÍÆÍìÊä³ö
-//    GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;         //ÉÏÀ­
-//    GPIO_Init(GPIOA,&GPIO_InitStructure);
-	
+	// å¼€å¯å¤ç”¨åŠŸèƒ½
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_USART1); 
     GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_USART1);
+
+	// æŒ‡å®šä¸²å£é€šä¿¡æ ¼å¼
 	USART_InitTypeDef USART_InitStructure;
 	USART_InitStructure.USART_BaudRate = 9600;
 	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
